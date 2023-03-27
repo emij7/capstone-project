@@ -1,10 +1,9 @@
-import "./form-input.styles.scss";
+import { FormInputLabel, Group, StyledFormInput } from "./form-input.styles";
 
 export const FormInput = ({ label, type, onChangeHandler, name, value }) => {
   return (
-    <div className="group">
-      <input
-        className="form-input"
+    <Group>
+      <StyledFormInput
         type={type}
         required
         onChange={onChangeHandler}
@@ -12,12 +11,10 @@ export const FormInput = ({ label, type, onChangeHandler, name, value }) => {
         value={value}
       />
       {label && (
-        <label
-          className={`${value.length > 0 ? "shrink" : ""} form-input-label`}
-        >
+        <FormInputLabel className={`${value.length > 0 ? "shrink" : ""}`}>
           {label}
-        </label>
+        </FormInputLabel>
       )}
-    </div>
+    </Group>
   );
 };

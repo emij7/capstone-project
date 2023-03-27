@@ -1,12 +1,12 @@
 import { SignIn } from "../sign-in-form/sign-in.component";
 import { SignUp } from "../sign-up-form/sign-up.component";
-import "./authentication.styles.scss";
+import { AuthenticationContainer } from "./authentication.styles";
 
 export const Authentication = () => {
   return (
-    <div className="authentication-container">
+    <AuthenticationContainer>
       <SignIn />
       <SignUp />
-    </div>
+    </AuthenticationContainer>
   );
 };

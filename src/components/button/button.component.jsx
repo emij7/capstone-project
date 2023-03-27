@@ -1,17 +1,5 @@
-import "./button.styles.scss";
-
-const BUTTON_TYPE = {
-  google: "google-sign-in",
-  inverted: "inverted",
-};
+import { StyledButton } from "./button.styles";
 
 export const Button = ({ children, buttonType, ...otherProps }) => {
-  return (
-    <button
-      className={`button-container ${BUTTON_TYPE[buttonType]}`}
-      {...otherProps}
-    >
-      {children}
-    </button>
-  );
+  return <StyledButton {...otherProps}>{children}</StyledButton>;
 };

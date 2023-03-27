@@ -1,6 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
-import "./checkout-item.styles.scss";
+import {
+  CheckoutItemContainer,
+  CheckoutSpan,
+  ImageContainer,
+  RemoveButton,
+} from "./checkout-item.styles";
 
 export const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
@@ -11,24 +16,22 @@ export const CheckoutItem = ({ cartItem }) => {
   const removeItemToCartHandler = () => removeItemToCart(cartItem);
 
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={imageUrl} alt={name} />
-      </div>
-      <span className="name">{name}</span>
-      <span className="quantity">
-        <div className="arrow" onClick={removeItemToCartHandler}>
+      </ImageContainer>
+      <CheckoutSpan className="name">{name}</CheckoutSpan>
+      <CheckoutSpan className="quantity">
+        <CheckoutSpan className="arrow" onClick={removeItemToCartHandler}>
           &#10094;
-        </div>
-        <span className="value">{quantity}</span>
-        <div className="arrow" onClick={addItemToCartHandler}>
+        </CheckoutSpan>
+        <CheckoutSpan className="value">{quantity}</CheckoutSpan>
+        <CheckoutSpan className="arrow" onClick={addItemToCartHandler}>
           &#10095;
-        </div>
-      </span>
-      <span className="price">{price}</span>
-      <div onClick={clearItemFromCartHandler} className="remove-button">
-        &#10005;
-      </div>
-    </div>
+        </CheckoutSpan>
+      </CheckoutSpan>
+      <CheckoutSpan className="price">{price}</CheckoutSpan>
+      <RemoveButton onClick={clearItemFromCartHandler}>&#10005;</RemoveButton>
+    </CheckoutItemContainer>
   );
 };
