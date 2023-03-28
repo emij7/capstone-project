@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledButton } from "../button/button.styles";
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
@@ -12,13 +13,14 @@ export const CartDropdownContainer = styled.div`
   top: 90px;
   right: 40px;
   z-index: 5;
-  .empty-message {
-    font-size: 18px;
-    margin: 50px auto;
-  }
-  button {
+  ${StyledButton} {
     margin-top: auto;
   }
+`;
+
+export const EmptyMessage = styled.span`
+  font-size: 18px;
+  margin: 50px auto;
 `;
 export const CartItems = styled.div`
   height: 240px;

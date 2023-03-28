@@ -10,9 +10,9 @@ export const CategoryItem = ({ category }) => {
     <CategoryContainer to={`/shop/${title}`} className="category-container">
       <BackgroundImage
         className="background-image"
-        style={{ backgroundImage: `url(${imageUrl})` }}
+        imageUrl={imageUrl}
       ></BackgroundImage>
-      <CategoryBody>
+      <CategoryBody className="category-body-container">
         <h2>{title.toUpperCase()}</h2>
         <p>Shop Now</p>
       </CategoryBody>
