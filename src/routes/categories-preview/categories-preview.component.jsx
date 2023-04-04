@@ -1,9 +1,10 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { CategoryPreview } from "../../components/category-preview/category-preview.component";
-import { CategoriesContext } from "../../contexts/categories.context";
+import { getCategories } from "../../store/categories/categoriesSlice";
+import { useAppSelector } from "../../store/hooks";
 
 export const CategoriesPreview = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
+  const categoriesMap = useAppSelector(getCategories);
   return (
     <Fragment>
       {Object.keys(categoriesMap).map((title) => {
