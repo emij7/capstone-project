@@ -4,7 +4,8 @@ import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import { CartDropdown } from "../../components/cart-dropdown/cart-dropdown.component";
 import { CartIcon } from "../../components/cart-icon/cart-icon.component";
 import { CartContext } from "../../contexts/cart.context";
-import { UserContext } from "../../contexts/user.context";
+import { useAppSelector } from "../../store/hooks";
+import { getUser } from "../../store/user/userSlice";
 import { signOutUser } from "../../utils/firebase/firebase";
 import {
   LogoContainer,
@@ -14,8 +15,9 @@ import {
 } from "./navigation.styles";
 
 export const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useAppSelector(getUser);
   const { isCartOpen } = useContext(CartContext);
+
   return (
     <Fragment>
       <NavigationContainer>
