@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
 import { CheckoutItem } from "../../components/checkout-item/checkout-item.component";
-import { CartContext } from "../../contexts/cart.context";
+import { getCartItems, getCartTotalPrice } from "../../store/cart/cartSlice";
+import { useAppSelector } from "../../store/hooks";
 import {
   CheckoutContainer,
   CheckoutHeader,
@@ -9,8 +9,8 @@ import {
 } from "./checkout.styles";
 
 export const Checkout = () => {
-  const { cartItems, cartTotalPrice } = useContext(CartContext);
-
+  const cartTotalPrice = useAppSelector(getCartTotalPrice);
+  const cartItems = useAppSelector(getCartItems);
   return (
     <CheckoutContainer>
       <CheckoutHeader>

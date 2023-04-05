@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
-import { setIsCartOpen } from "../../store/cart/cartSlice";
-import { useAppDispatch } from "../../store/hooks";
+import {
+  getCartTotalQuantity,
+  setIsCartOpen,
+} from "../../store/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { CartIconContainer, ItemCount, ShoppingIcon } from "./cart-icon.styles";
 
 export const CartIcon = () => {
-  const { cartTotalQuantity } = useContext(CartContext);
-
+  const cartTotalQuantity = useAppSelector(getCartTotalQuantity);
   const dispatch = useAppDispatch();
   const toogleIsCartOpen = () => dispatch(setIsCartOpen());
 

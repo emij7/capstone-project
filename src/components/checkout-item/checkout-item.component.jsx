@@ -1,5 +1,9 @@
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import {
+  addCartItem,
+  clearCartItem,
+  removeCartItem,
+} from "../../store/cart/cartSlice";
+import { useAppDispatch } from "../../store/hooks";
 import {
   CheckoutItemContainer,
   CheckoutSpan,
@@ -8,12 +12,12 @@ import {
 } from "./checkout-item.styles";
 
 export const CheckoutItem = ({ cartItem }) => {
+  const dispatch = useAppDispatch();
+
   const { name, imageUrl, price, quantity } = cartItem;
-  const { clearItemFromCart, addItemToCart, removeItemToCart } =
-    useContext(CartContext);
-  const clearItemFromCartHandler = () => clearItemFromCart(cartItem);
-  const addItemToCartHandler = () => addItemToCart(cartItem);
-  const removeItemToCartHandler = () => removeItemToCart(cartItem);
+  const clearItemFromCartHandler = () => dispatch(clearCartItem(cartItem));
+  const addItemToCartHandler = () => dispatch(addCartItem(cartItem));
+  const removeItemToCartHandler = () => dispatch(removeCartItem(cartItem));
 
   return (
     <CheckoutItemContainer>

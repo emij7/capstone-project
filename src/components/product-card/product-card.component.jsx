@@ -1,15 +1,14 @@
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { addCartItem } from "../../store/cart/cartSlice";
+import { useAppDispatch } from "../../store/hooks";
 import { Button } from "../button/button.component";
 import { CardContainer, Footer } from "./product.card.styles";
 
 export const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
-
-  const { addItemToCart } = useContext(CartContext);
+  const dispatch = useAppDispatch();
 
   const addToCart = () => {
-    addItemToCart(product);
+    dispatch(addCartItem(product));
   };
 
   return (

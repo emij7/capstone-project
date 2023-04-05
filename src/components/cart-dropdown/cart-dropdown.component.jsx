@@ -1,6 +1,6 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "../../contexts/cart.context";
+import { getCartItems } from "../../store/cart/cartSlice";
+import { useAppSelector } from "../../store/hooks";
 import { Button } from "../button/button.component";
 import { CartItem } from "../cart-item/cart-item.component";
 import {
@@ -10,7 +10,7 @@ import {
 } from "./cart-dropdown.styles";
 
 export const CartDropdown = () => {
-  const { cartItems } = useContext(CartContext);
+  const cartItems = useAppSelector(getCartItems);
   const navigate = useNavigate();
   const navigateToCheckout = () => {
     navigate("checkout");
