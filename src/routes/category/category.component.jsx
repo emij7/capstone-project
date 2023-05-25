@@ -4,6 +4,7 @@ import { ProductCard } from "../../components/product-card/product-card.componen
 import { getCategories } from "../../store/categories/categoriesSlice";
 import { useAppSelector } from "../../store/hooks";
 import { CategoryTitle, ShopCategoryContainer } from "./category.styles";
+import { Spinner } from "../../components/spinner/spinner.component";
 
 export const Category = () => {
   const { category } = useParams();
@@ -11,17 +12,21 @@ export const Category = () => {
   const [products, setProducts] = useState(categoriesMap[category]);
   useEffect(() => {
     setProducts(categoriesMap[category]);
-  }, [category, categoriesMap]);
+  }, [category, categoriesMap, products]);
 
   return (
     <Fragment>
       <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
-      <ShopCategoryContainer>
-        {products &&
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-      </ShopCategoryContainer>
+      {products === undefined ? (
+        <Spinner />
+      ) : (
+        <ShopCategoryContainer>
+          {products &&
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+        </ShopCategoryContainer>
+      )}
     </Fragment>
   );
 };
