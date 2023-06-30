@@ -1,6 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
-const initialState = {
+interface Item {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+interface CartState {
+  isCartOpen: boolean;
+  cartItems: Item[];
+  cartTotalQuantity: number;
+  cartTotalPrice: number;
+}
+
+const initialState: CartState = {
   isCartOpen: false,
   cartItems: [],
   //   removeItemToCart: () => {},
@@ -16,7 +31,7 @@ export const cartSlice = createSlice({
     setIsCartOpen: (state) => {
       state.isCartOpen = !state.isCartOpen;
     },
-    addCartItem: (state, action) => {
+    addCartItem: (state, action: PayloadAction<Item>) => {
       const product = action.payload;
       const existingItem = state.cartItems.find((cartItem) => {
         return cartItem.id === product.id;
@@ -30,22 +45,22 @@ export const cartSlice = createSlice({
       state.cartTotalQuantity = state.cartTotalQuantity + 1;
       state.cartTotalPrice = state.cartTotalPrice + product.price;
     },
-    removeCartItem: (state, action) => {
+    removeCartItem: (state, action: PayloadAction<Item>) => {
       const productToRemove = action.payload;
       const existingItem = state.cartItems.find((cartItem) => {
         return cartItem.id === productToRemove.id;
       });
-      if (existingItem.quantity === 1) {
+      if (existingItem && existingItem.quantity === 1) {
         state.cartItems = state.cartItems.filter(
           (cartItem) => cartItem.id !== productToRemove.id
         );
-      } else {
+      } else if (existingItem) {
         existingItem.quantity--;
       }
       state.cartTotalQuantity--;
       state.cartTotalPrice -= productToRemove.price;
     },
-    clearCartItem: (state, action) => {
+    clearCartItem: (state, action: PayloadAction<Item>) => {
       const productToRemove = action.payload;
 
       state.cartItems = state.cartItems.filter(
@@ -61,9 +76,11 @@ export const cartSlice = createSlice({
 export const { setIsCartOpen, addCartItem, removeCartItem, clearCartItem } =
   cartSlice.actions;
 
-export const getCartStatus = (state) => state.cart.isCartOpen;
-export const getCartItems = (state) => state.cart.cartItems;
-export const getCartTotalQuantity = (state) => state.cart.cartTotalQuantity;
-export const getCartTotalPrice = (state) => state.cart.cartTotalPrice;
+export const getCartStatus = (state: RootState) => state.cart.isCartOpen;
+export const getCartItems = (state: RootState) => state.cart.cartItems;
+export const getCartTotalQuantity = (state: RootState) =>
+  state.cart.cartTotalQuantity;
+export const getCartTotalPrice = (state: RootState) =>
+  state.cart.cartTotalPrice;
 
 export default cartSlice.reducer;

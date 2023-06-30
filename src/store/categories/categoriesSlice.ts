@@ -1,3 +1,4 @@
+import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -16,6 +17,7 @@ export const categoriesSlice = createSlice({
 
 export const { setCategoriesMap } = categoriesSlice.actions;
 
-export const getCategories = (state) => state.categories.categoriesMap;
+export const getCategories = (state: RootState) =>
+  state.categories.categoriesMap;
 
 export default categoriesSlice.reducer;
