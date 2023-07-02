@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Category } from "../categories-container/categoriesContainer";
 
 export const CategoryContainer = styled(Link)`
   min-width: 30%;
@@ -37,7 +38,7 @@ export const CategoryContainer = styled(Link)`
   }
 `;
 
-export const BackgroundImage = styled.div`
+export const BackgroundImage = styled.div<Category>`
   width: 100%;
   height: 100%;
   background-size: cover;

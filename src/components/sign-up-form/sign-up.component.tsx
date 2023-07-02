@@ -6,6 +6,8 @@ import {
 import { Button } from "../button/button.component";
 import { FormInput } from "../form-input/form-input.component";
 import { SignUpContainer } from "./sing-up.styles";
+import { User, UserCredential } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 
 export const SignUp = () => {
   const defaultFormValues = {
@@ -22,22 +24,29 @@ export const SignUp = () => {
     setFormValues(defaultFormValues);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
     try {
-      const { user } = await newUserWithUserAndPassword(email, password);
-      await createUserDocumentFromAuth(user, { displayName });
-      resetFormValues();
+      const userCredential: UserCredential | undefined =
+        await newUserWithUserAndPassword(email, password);
+      if (userCredential) {
+        const user: User | null = userCredential.user;
+        if (user) {
+          await createUserDocumentFromAuth(user, { displayName });
+          resetFormValues();
+        }
+      }
     } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
+      const firebaseError = error as FirebaseError;
+      if (firebaseError.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");
       }
       console.log("Unable to create user, encounted an error", error);

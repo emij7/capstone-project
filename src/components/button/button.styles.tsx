@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { TButton } from "./button.types";
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<TButton>`
   min-width: 165px;
   width: auto;
   height: 50px;

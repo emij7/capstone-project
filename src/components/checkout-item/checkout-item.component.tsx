@@ -4,6 +4,7 @@ import {
   removeCartItem,
 } from "../../store/cart/cartSlice";
 import { useAppDispatch } from "../../store/hooks";
+import { CartItemProps } from "../cart-item/cart-item.component";
 import {
   CheckoutItemContainer,
   CheckoutSpan,
@@ -11,7 +12,7 @@ import {
   RemoveButton,
 } from "./checkout-item.styles";
 
-export const CheckoutItem = ({ cartItem }) => {
+export const CheckoutItem = ({ cartItem }: CartItemProps) => {
   const dispatch = useAppDispatch();
 
   const { name, imageUrl, price, quantity } = cartItem;

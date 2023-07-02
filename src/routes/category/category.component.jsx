@@ -13,7 +13,6 @@ export const Category = () => {
   useEffect(() => {
     setProducts(categoriesMap[category]);
   }, [category, categoriesMap, products]);
-
   return (
     <Fragment>
       <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
@@ -22,9 +21,9 @@ export const Category = () => {
       ) : (
         <ShopCategoryContainer>
           {products &&
-            products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            products.map((product) => {
+              return <ProductCard key={product.id} cartItem={product} />;
+            })}
         </ShopCategoryContainer>
       )}
     </Fragment>

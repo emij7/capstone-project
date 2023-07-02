@@ -1,10 +1,15 @@
+import { Category } from "../categories-container/categoriesContainer";
 import {
   BackgroundImage,
   CategoryBody,
   CategoryContainer,
 } from "./category-item.styles";
 
-export const CategoryItem = ({ category }) => {
+type CategoryProps = {
+  category: Category;
+};
+
+export const CategoryItem = ({ category }: CategoryProps) => {
   const { title, imageUrl } = category;
   return (
     <CategoryContainer to={`/shop/${title}`} className="category-container">
@@ -13,7 +18,7 @@ export const CategoryItem = ({ category }) => {
         imageUrl={imageUrl}
       ></BackgroundImage>
       <CategoryBody className="category-body-container">
-        <h2>{title.toUpperCase()}</h2>
+        <h2>{title?.toUpperCase()}</h2>
         <p>Shop Now</p>
       </CategoryBody>
     </CategoryContainer>

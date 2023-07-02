@@ -1,3 +1,4 @@
+import { TCartItem } from "../cart-item/cart-item.component";
 import { ProductCard } from "../product-card/product-card.component";
 import {
   CategoryPreviewContainer,
@@ -5,7 +6,12 @@ import {
   Title,
 } from "./category-preview-styles";
 
-export const CategoryPreview = ({ title, products }) => {
+type CategoryProps = {
+  products: TCartItem[];
+  title: string;
+};
+
+export const CategoryPreview = ({ title, products }: CategoryProps) => {
   return (
     <CategoryPreviewContainer>
       <h2>
@@ -15,9 +21,9 @@ export const CategoryPreview = ({ title, products }) => {
       </h2>
       <Preview>
         {products
-          .filter((product, index) => index < 4)
-          .map((product) => (
-            <ProductCard key={product.id} product={product} />
+          .filter((cartItem, index) => index < 4)
+          .map((cartItem) => (
+            <ProductCard key={cartItem.id} cartItem={cartItem} />
           ))}
       </Preview>
     </CategoryPreviewContainer>

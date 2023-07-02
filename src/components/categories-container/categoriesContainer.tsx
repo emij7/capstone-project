@@ -1,7 +1,17 @@
 import { CategoryItem } from "../category-item/category-item.component";
 import { StyledCategoriesContainer } from "./categoriesContainer.styles";
 
-export const CategoriesContainer = ({ categories }) => {
+export type Category = {
+  category?: string;
+  id?: number;
+  title?: string;
+  imageUrl?: string;
+};
+
+export type Categories = {
+  categories: Category[];
+};
+export const CategoriesContainer = ({ categories }: Categories) => {
   return (
     <StyledCategoriesContainer>
       {categories.map((category) => {

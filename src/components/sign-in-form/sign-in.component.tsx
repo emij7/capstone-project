@@ -7,6 +7,7 @@ import {} from "../../utils/firebase/firebase";
 import { Button } from "../button/button.component";
 import { FormInput } from "../form-input/form-input.component";
 import { ButtonsContainer, SignInContainer } from "./sing-in.styles";
+import { FirebaseError } from "firebase/app";
 
 export const SignIn = () => {
   const defaultFormValues = {
@@ -25,17 +26,18 @@ export const SignIn = () => {
     await signInWithGooglePopup();
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       await signInWithMailAndPassword(email, password);
       resetFormValues();
     } catch (error) {
-      switch (error.code) {
+      const firebaseError = error as FirebaseError;
+      switch (firebaseError.code) {
         case "auth/wrong-password":
           alert("Incorrect password");
           break;
