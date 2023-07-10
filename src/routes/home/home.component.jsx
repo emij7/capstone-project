@@ -1,6 +1,6 @@
 import { CategoriesContainer } from "../../components/categories-container/categoriesContainer";
 
-export const Home = () => {
+const Home = () => {
   const categories = [
     {
       id: 1,
@@ -30,3 +30,5 @@ export const Home = () => {
   ];
   return <CategoriesContainer categories={categories} />;
 };
+
+export default Home;

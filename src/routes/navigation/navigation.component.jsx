@@ -14,7 +14,7 @@ import {
   NavLinks,
 } from "./navigation.styles";
 
-export const Navigation = () => {
+const Navigation = () => {
   const currentUser = useAppSelector(getUser);
   const isCartOpen = useAppSelector(getCartStatus);
 
@@ -41,3 +41,4 @@ export const Navigation = () => {
     </Fragment>
   );
 };
+export default Navigation;

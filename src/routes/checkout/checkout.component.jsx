@@ -7,8 +7,7 @@ import {
   HeaderBlock,
   TotalPrice,
 } from "./checkout.styles";
-
-export const Checkout = () => {
+const Checkout = () => {
   const cartTotalPrice = useAppSelector(getCartTotalPrice);
   const cartItems = useAppSelector(getCartItems);
   return (
@@ -37,3 +36,5 @@ export const Checkout = () => {
     </CheckoutContainer>
   );
 };
+
+export default Checkout;

@@ -2,7 +2,7 @@ import { SignIn } from "../sign-in-form/sign-in.component";
 import { SignUp } from "../sign-up-form/sign-up.component";
 import { AuthenticationContainer } from "./authentication.styles";
 
-export const Authentication = () => {
+const Authentication = () => {
   return (
     <AuthenticationContainer>
       <SignIn />
@@ -10,3 +10,4 @@ export const Authentication = () => {
     </AuthenticationContainer>
   );
 };
+export default Authentication;
