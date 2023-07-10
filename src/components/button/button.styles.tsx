@@ -23,6 +23,10 @@ export const StyledButton = styled.button<TButton>`
     color: black;
     border: 1px solid black;
   }
+  @media screen and (max-width: 600px) {
+    min-width: 145px;
+  }
+
   ${({ google }) => google && GoogleSignInButton}
   ${({ inverted }) => inverted && InvertedButton}
 `;
@@ -32,7 +36,7 @@ const GoogleSignInButton = css`
   color: white;
 
   :hover {
-    background-color: #357ae8;
+    background-color: #326ac4;
     border: none;
     color: white;
   }

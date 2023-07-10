@@ -47,7 +47,7 @@ export const BackgroundImage = styled.div<Category>`
 `;
 export const CategoryBody = styled.div`
   height: 90px;
-  padding: 0 25px;
+  padding: 0 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,6 +56,9 @@ export const CategoryBody = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
+  @media screen and (max-width: 600px) {
+    padding: 0;
+  }
 
   h2 {
     font-weight: bold;

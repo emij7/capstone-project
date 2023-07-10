@@ -8,6 +8,7 @@ import { FormInput } from "../form-input/form-input.component";
 import { SignUpContainer } from "./sing-up.styles";
 import { User, UserCredential } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
+import { ButtonsContainer } from "../sign-in-form/sing-in.styles";
 
 export const SignUp = () => {
   const defaultFormValues = {
@@ -85,7 +86,9 @@ export const SignUp = () => {
           name={"confirmPassword"}
           value={confirmPassword}
         />
-        <Button type="submit">Sign Up</Button>
+        <ButtonsContainer>
+          <Button type="submit">Sign Up</Button>
+        </ButtonsContainer>
       </form>
     </SignUpContainer>
   );

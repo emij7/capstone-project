@@ -7,4 +7,7 @@ export const SignUpContainer = styled.div`
   h2 {
     margin: 10px 0;
   }
+  @media screen and (max-width: 1000px) {
+    width: 70%;
+  }
 `;

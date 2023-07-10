@@ -1,6 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
 
-import "./categories.styles.scss";
 import { Routes, Route } from "react-router-dom";
 import {
   createUserDocumentFromAuth,
